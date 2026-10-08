@@ -74,6 +74,13 @@ private:
     // TODO: 在这里添加你自己的私有数据成员与辅助函数。
     //       可以自由选择内部表示（例如缓冲区指针 + 长度 + 容量），
     //       只要公开接口的语义满足 TASKS.md 的要求即可。
+
+    // public里只有操作字符串的接口，没有地方保存每个对象自己的内容，因此需要有数据成员
+    char* data_;                // 动态字符数组，末尾有“\0”
+    std::size_t size_;          // 当前字符数，不包括“\0”
+    std::size_t capacity_;       // 可用字符容量，不包括“\0”
+
+    void reserve(std::size_t new_capacity); // 容量不足时扩容
 };
 
 #endif  // ASSIGNMENT2_MY_STRING_H
